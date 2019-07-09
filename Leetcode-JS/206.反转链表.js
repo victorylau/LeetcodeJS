@@ -26,11 +26,14 @@
 
 // 递归
 var reverseList = function(head) {
-    if(head == null || head.next == null) return head;
+    if(head == null || head.next == null) {
+        // printNode(head);
+        return head;
+    }
     var p = reverseList(head.next);
-    head.next = head;
-    console.log(head);
-    head.next.next = null;
+    head.next.next = head;
+    head.next = null;
+    printNode(p);
     return p;
 };
 
@@ -50,5 +53,13 @@ function aListNode(arr) {
     return listNode.next;
 };
 
-var example = aListNode([1,2,3]);
-console.log(reverseList(example));
+var example = aListNode([1,2,3,4,5]);
+printNode(reverseList(example));
+
+function printNode(head) {
+    console.log('-----------')
+    while(head) {
+        console.log(head.val)
+        head = head.next
+    }
+}
