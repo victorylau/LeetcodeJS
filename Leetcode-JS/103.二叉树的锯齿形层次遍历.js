@@ -18,14 +18,14 @@ var zigzagLevelOrder = function(root) {
 
 var helper = function(node, level, levels) {
     if(levels.length == level) levels.push(new Array())
-    levels[level].push(node.val)
-
-    if(level%2 == 0) {
-        if(node.left) helper(node.left, level+1, levels)
-        if(node.right) helper(node.right, level+1, levels)
+    
+    if(level%2 != 0) {
+        levels[level].unshift(node.val)
     }
     else {
-        if(node.right) helper(node.right, level+1, levels)
-        if(node.left) helper(node.left, level+1, levels)
+        levels[level].push(node.val)
     }
+
+    if(node.left) helper(node.left, level+1, levels)
+    if(node.right) helper(node.right, level+1, levels)
 };

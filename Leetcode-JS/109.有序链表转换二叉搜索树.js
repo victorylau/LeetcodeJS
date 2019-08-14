@@ -43,10 +43,13 @@ var foundMidNode = function(head) {
         fast = fast.next.next
         slow = slow.next
     }
-    var mid = slow
-    // if(slow.next) {
-    //     slow.next = null;
-    // }
+    var mid;
+    if(slow.next) {
+        mid = slow.next
+        slow.next = null
+    } else {
+        mid = slow
+    }
     return mid
 };
 
@@ -55,6 +58,7 @@ var sortedListToBST = function(head) {
     if(head==null) return null;
     var mid = foundMidNode(head)
     printNode(mid)
+    printNode(head)
     var node = new TreeNode(mid.val)
     if(head==mid) return node
     node.left = sortedListToBST(head)
